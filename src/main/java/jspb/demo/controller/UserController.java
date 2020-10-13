@@ -22,16 +22,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(path = "/registration")
-    public ResponseEntity registration(@RequestBody LoginFormDTO loginFormDTO) {
-        Boolean result = this.registrationService.registerUser(loginFormDTO);
-        HttpStatus status = result ? HttpStatus.CREATED : HttpStatus.CONFLICT;
-        return ResponseEntity.status(status).build();
-    }
+//    @PostMapping(path = "/registration")
+//    public ResponseEntity registration(@RequestBody LoginFormDTO loginFormDTO) {
+//        Boolean result = this.registrationService.registerUser(loginFormDTO);
+//        HttpStatus status = result ? HttpStatus.CREATED : HttpStatus.CONFLICT;
+//        return ResponseEntity.status(status).build();
+//    }
 
     @GetMapping(value = "/test")
     public String test() {
-        return "AAAAAAAAAAAAAAAAA";
+        return "You can see this message";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
