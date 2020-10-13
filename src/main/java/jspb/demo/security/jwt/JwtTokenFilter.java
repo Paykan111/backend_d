@@ -10,6 +10,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class JwtTokenFilter extends GenericFilterBean {
 
@@ -23,6 +26,10 @@ public class JwtTokenFilter extends GenericFilterBean {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
 
+//        Iterator iterator = ((HttpServletRequest) req).getHeaderNames().asIterator();
+//        while (iterator.hasNext()) {
+//            System.out.println(iterator.next());
+//        }
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
         if (token != null && jwtTokenProvider.validateToken(token)) {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
