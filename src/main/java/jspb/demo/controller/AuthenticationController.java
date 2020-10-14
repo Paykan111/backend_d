@@ -5,8 +5,6 @@ import jspb.demo.dto.LoginFormDTO;
 import jspb.demo.security.jwt.JwtTokenProvider;
 import jspb.demo.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -43,7 +41,7 @@ public class AuthenticationController {
             User user = userService.findByUsername(username);
 
             if (user == null) {
-                throw new UsernameNotFoundException("User with username: " + username + " not found");
+                throw new UsernameNotFoundException("User with username: \"" + username + "\" not found");
             }
 
             String token = jwtTokenProvider.createToken(username);
