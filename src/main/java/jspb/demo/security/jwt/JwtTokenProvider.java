@@ -26,7 +26,6 @@ public class JwtTokenProvider {
     @Value("${jwt.token.expired}")
     private long validityInMilliseconds;
 
-
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -67,7 +66,7 @@ public class JwtTokenProvider {
 
     public String resolveToken(HttpServletRequest req) {
         Enumeration<String> a = req.getHeaderNames();
-        while (a.hasMoreElements()){
+        while (a.hasMoreElements()) {
             String s = a.nextElement();
             String sd = req.getHeader(s);
         }

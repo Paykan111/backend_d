@@ -3,6 +3,7 @@ package jspb.demo.controller;
 import jspb.demo.dto.LoginFormDTO;
 import jspb.demo.service.RegistrationService;
 import jspb.demo.service.UserService;
+import jspb.demo.service.UserServiceImp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,12 @@ public class UserController {
 
     private RegistrationService registrationService;
     private UserService userService;
+    private UserServiceImp userServiceImp;
 
-    public UserController(RegistrationService registrationService, UserService userService) {
+    public UserController(RegistrationService registrationService, UserService userService, UserServiceImp userServiceImp) {
         this.registrationService = registrationService;
         this.userService = userService;
+        this.userServiceImp = userServiceImp;
     }
 
     @PostMapping(path = "/registration")
@@ -34,12 +37,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/table")
-    public ResponseEntity dataToTable() {
-        Map response = new HashMap();
-        response.put("age", 89);
-        response.put("first_name", "Geneva");
-        response.put("last_name", "Wilson");
-        return ResponseEntity.ok(response);
+    public ResponseEntity getData() {
+        return ResponseEntity.ok(userServiceImp.dataForTable());
     }
-
 }
